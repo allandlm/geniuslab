@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Sistema de Biblioteca{% endblock %}</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
@@ -12,10 +13,7 @@
         <h1>Sistema de Biblioteca Genius Lab</h1>
         <nav>
             <ul>
-                <li><a href="{% url 'list_books' %}">Livros</a></li>
-                <li><a href="{% url 'list_loans' %}">Empréstimos</a></li>
-                <li><a href="{% url 'report_list' %}">Relatórios</a></li>
-                <li><a href="{% url 'logout' %}">Sair</a></li>
+                <li><a href="{% url 'home' %}">Inicio</a></li>
             </ul>
         </nav>
     </header>
@@ -32,6 +30,6 @@
         <p>&copy; 2024 Sistema de Biblioteca Genius Lab. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static '../static/js/script.js' %}"></script>
 </body>
 </html>

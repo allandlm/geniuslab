@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Book
 from django.contrib import messages
 
+def home_view(request):
+    return render(request, 'home.html')
+
 def list_books(request):
     books = Book.objects.all()  # Obtém todos os livros do banco de dados
     return render(request, 'list_books.html', {'books': books})

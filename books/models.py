@@ -9,6 +9,7 @@ class Book(models.Model):
     genre = models.CharField(max_length=100)
     total_quantity = models.PositiveIntegerField()
     available_quantity = models.PositiveIntegerField()
-
+    description = models.TextField(default="Sem descrição.")
+    
     def __str__(self):
         return f"{self.title} by {self.author}"

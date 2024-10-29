@@ -17,12 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from books.views import add_book_view, list_books
+from books.views import add_book_view, home_view, list_books
 from loans.views import register_loan, return_loan
 from reports.views import generate_report
 from users.views import register_user
 
 urlpatterns = [
+    path('', home_view, name='home'),  # URL para página inicial
     path('admin/', admin.site.urls), # URL entrar como admin
     path('livros/', list_books, name='list_books'),  # URL para listar livros
     path('livros/adicionar/', add_book_view, name='add_book'),  # URL para adicionar livro

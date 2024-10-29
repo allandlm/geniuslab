@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Bem-vindo ao Genius Lab!</h1>
+    </header>
+    <main>
+        <p>Selecione uma das opções abaixo:</p>
+        <ul>
+            <li><a href="{% url 'list_books' %}">Listar Livros</a></li>
+            <li><a href="{% url 'add_book' %}">Adicionar Livro</a></li>
+            <li><a href="{% url 'register_user' %}">Registrar Usuário</a></li>
+            <li><a href="{% url 'register_loan' %}">Registrar Empréstimo</a></li>
+            <li><a href="{% url 'return_loan' %}">Devolver Empréstimo</a></li>
+            <li><a href="{% url 'generate_report' %}">Gerar Relatório de Empréstimos</a></li>
+        </ul>
+    </main>
+{% endblock %}

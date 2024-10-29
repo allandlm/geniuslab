@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% block title %}Cadastro de Livro{% endblock %}
 {% block content %}
 
@@ -18,7 +19,7 @@
     <input type="text" id="publisher" name="publisher" required>
 
     <label for="year">Ano de Publicação:</label>
-    <input type="number" id="year" name="year" min="0" required>
+    <input type="number" id="publication_year" name="publication_year" min="0" required>
     
     <label for="genre">Gênero:</label>
     <select id="genre" name="genre" required>
