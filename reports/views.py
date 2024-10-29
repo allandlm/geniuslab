@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Loan
+from loans.models import Loan
 from django.utils import timezone
 
 def generate_report(request):

@@ -17,11 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from geniuslab.books.views import add_book_view, list_books
-from geniuslab.loans.views import register_loan, return_loan
-from geniuslab.reports.views import generate_report
-from geniuslab.users.views import register_user
-
+from books.views import add_book_view, list_books
+from loans.views import register_loan, return_loan
+from reports.views import generate_report
+from users.views import register_user
 
 urlpatterns = [
     path('admin/', admin.site.urls), # URL entrar como admin

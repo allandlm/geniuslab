@@ -29,10 +29,6 @@
             <td>{{ book.genre }}</td>
             <td>{{ book.total_quantity }}</td>
             <td>{{ book.available_quantity }}</td>
-            <td>
-                <a href="{% url 'edit_book' book.id %}">Editar</a>
-                <a href="{% url 'delete_book' book.id %}">Excluir</a>
-            </td>
         </tr>
         {% empty %}
         <tr>
