@@ -16,7 +16,7 @@ def add_book_view(request):
         author = request.POST.get('author')
         isbn = request.POST.get('isbn')
         publisher = request.POST.get('publisher')
-        year = request.POST.get('year')
+        publication_year = request.POST.get('publication_year')
         genre = request.POST.get('genre')
         total_quantity = request.POST.get('total_quantity')
         available_quantity = request.POST.get('available_quantity')
@@ -28,7 +28,7 @@ def add_book_view(request):
             author=author,
             isbn=isbn,
             publisher=publisher,
-            year=year,
+            publication_year=publication_year,
             genre=genre,
             total_quantity=total_quantity,
             available_quantity=available_quantity,

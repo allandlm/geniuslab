@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import get_user_model
+
+User = get_user_model() 
 
 def register_user(request):
     if request.method == 'POST':
@@ -23,8 +26,16 @@ def register_user(request):
             return redirect('register_user')
 
         # Cria o usuário
-        user = User.objects.create_user(username=email, email=email, password=password)
-        user.first_name = full_name  # Armazena o nome completo
+        user = User.objects.create_user(
+            username=full_name,
+            email=email,
+            password=password,
+            first_name=full_name,
+            user_type=user_type,
+            address=address,
+            phone=phone
+        )
+        
         user.save()
 
         # Aqui você pode armazenar o tipo de usuário em um perfil separado se desejar
@@ -33,3 +44,7 @@ def register_user(request):
         return redirect('login')  # Redireciona para a página de login (ou outra página desejada)
 
     return render(request, 'user_registration.html')
+
+def list_users(request):
+    users = User.objects.all()  # Obtém todos os usuários
+    return render(request, 'list_users.html', {'users': users})

@@ -15,7 +15,7 @@
             <th>Gênero</th>
             <th>Quantidade Total</th>
             <th>Quantidade Disponível</th>
-            <th>Ações</th>
+            <th>Descrição</th>
         </tr>
     </thead>
     <tbody>
@@ -25,10 +25,11 @@
             <td>{{ book.author }}</td>
             <td>{{ book.isbn }}</td>
             <td>{{ book.publisher }}</td>
-            <td>{{ book.year }}</td>
+            <td>{{ book.publication_year }}</td>
             <td>{{ book.genre }}</td>
             <td>{{ book.total_quantity }}</td>
             <td>{{ book.available_quantity }}</td>
+            <td>{{ book.description }}</td>
         </tr>
         {% empty %}
         <tr>
