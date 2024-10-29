@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Relatório de Empréstimos{% endblock %}
+
+{% block content %}
+<h2>Relatório de Empréstimos</h2>
+<form action="{% url 'generate_report' %}" method="get">
+    {% csrf_token %}
+
+    <label for="start_date">Data de Início:</label>
+    <input type="date" id="start_date" name="start_date" required>
+
+    <label for="end_date">Data de Fim:</label>
+    <input type="date" id="end_date" name="end_date" required>
+
+    <button type="submit">Gerar Relatório</button>
+</form>
+
+{% if report %}
+    <h3>Resultados do Relatório</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Usuário</th>
+                <th>Livro</th>
+                <th>Data do Empréstimo</th>
+                <th>Data de Devolução</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for loan in report %}
+                <tr>
+                    <td>{{ loan.user.name }}</td>
+                    <td>{{ loan.book.title }}</td>
+                    <td>{{ loan.loan_date }}</td>
+                    <td>{{ loan.return_date }}</td>
+                    <td>{{ loan.status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+{% endblock %}

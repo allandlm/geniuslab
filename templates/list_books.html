@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Livros{% endblock %}
+
+{% block content %}
+<h2>Lista de Livros</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>ISBN</th>
+            <th>Editora</th>
+            <th>Ano de Publicação</th>
+            <th>Gênero</th>
+            <th>Quantidade Total</th>
+            <th>Quantidade Disponível</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.publisher }}</td>
+            <td>{{ book.year }}</td>
+            <td>{{ book.genre }}</td>
+            <td>{{ book.total_quantity }}</td>
+            <td>{{ book.available_quantity }}</td>
+            <td>
+                <a href="{% url 'edit_book' book.id %}">Editar</a>
+                <a href="{% url 'delete_book' book.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="9">Nenhum livro cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'add_book' %}">Cadastrar Novo Livro</a>
+{% endblock %}

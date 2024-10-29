@@ -17,6 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from geniuslab.books.views import add_book_view, list_books
+from geniuslab.loans.views import register_loan, return_loan
+from geniuslab.reports.views import generate_report
+from geniuslab.users.views import register_user
+
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), # URL entrar como admin
+    path('livros/', list_books, name='list_books'),  # URL para listar livros
+    path('livros/adicionar/', add_book_view, name='add_book'),  # URL para adicionar livro
+    path('registrar/', register_user, name='register_user'),  # URL para registrar usuário
+    path('registrar-empréstimo/', register_loan, name='register_loan'),  # URL para registrar empréstimo
+    path('devolver-empréstimo/', return_loan, name='return_loan'),  # URL para registrar devolução
+    path('relatorio-empréstimos/', generate_report, name='generate_report'),  # URL para gerar relatório
+
+
+    # Adicione outras URLs conforme necessário
 ]
