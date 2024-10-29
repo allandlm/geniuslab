@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Devolução de Empréstimo{% endblock %}
+
+{% block content %}
+<h2>Devolução de Empréstimo</h2>
+<form action="{% url 'return_loan' %}" method="post">
+    {% csrf_token %}
+
+    <label for="loan">Empréstimo:</label>
+    <select id="loan" name="loan" required>
+        {% for loan in active_loans %}
+            <option value="{{ loan.id }}">
+                {{ loan.user.name }} - {{ loan.book.title }} ({{ loan.loan_date }})
+            </option>
+        {% endfor %}
+    </select>
+
+    <label for="return_date">Data de Devolução:</label>
+    <input type="date" id="return_date" name="return_date" value="{{ return_date_today }}" required>
+
+    <label for="observations">Observações:</label>
+    <textarea id="observations" name="observations" placeholder="Adicionar observações (opcional)"></textarea>
+
+    <button type="submit">Registrar Devolução</button>
+</form>
+{% endblock %}

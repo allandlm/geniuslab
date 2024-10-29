@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Registro de Empréstimo{% endblock %}
+
+{% block content %}
+<h2>Registro de Empréstimo</h2>
+<form action="{% url 'register_loan' %}" method="post">
+    {% csrf_token %}
+    
+    <label for="user">Usuário:</label>
+    <select id="user" name="user" required>
+        {% for user in users %}
+            <option value="{{ user.id }}">{{ user.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="book">Livro:</label>
+    <select id="book" name="book" required>
+        {% for book in books %}
+            <option value="{{ book.id }}">{{ book.title }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="loan_date">Data do Empréstimo:</label>
+    <input type="date" id="loan_date" name="loan_date" value="{{ loan_date_today }}" required>
+
+    <label for="return_date">Data de Devolução Prevista:</label>
+    <input type="date" id="return_date" name="return_date" required>
+
+    <label for="status">Status do Empréstimo:</label>
+    <select id="status" name="status" required>
+        <option value="Em Aberto">Em Aberto</option>
+        <option value="Concluído">Concluído</option>
+    </select>
+
+    <button type="submit">Registrar Empréstimo</button>
+</form>
+{% endblock %}
