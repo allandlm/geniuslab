@@ -20,9 +20,9 @@ def user_login(request):
         if user is not None:
             login(request, user)
             if user.user_type == User.ADMIN:
-                return redirect('admin_dashboard.html')
+                return redirect('admin_dashboard')
             else:
-                return redirect('reader_dashboard.html')
+                return redirect('reader_dashboard')
         else:
             messages.error(request, "Email ou senha incorretos.")
             return redirect('login')
