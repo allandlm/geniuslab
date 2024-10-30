@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Loan, User, Book  # Importe os modelos necessários
 from django.utils import timezone
@@ -32,7 +33,7 @@ def register_loan(request):
         book.save()
 
         messages.success(request, "Empréstimo registrado com sucesso.")
-        return redirect('list_loans')  # Redireciona para a lista de empréstimos
+        return redirect('loan_history')  # Redireciona para a lista de empréstimos
 
     # Se não for POST, renderiza o formulário
     users = User.objects.all()  # Obtem todos os usuários
@@ -58,6 +59,7 @@ def return_loan(request):
             # Atualiza a data de devolução e o status do empréstimo
             loan.return_date = return_date
             loan.status = 'Concluído'  # Atualiza o status para concluído
+            loan.observations = observations
             loan.save()
 
             # Atualiza a quantidade disponível do livro
@@ -66,7 +68,7 @@ def return_loan(request):
             book.save()
 
             messages.success(request, "Devolução registrada com sucesso.")
-            return redirect('list_loans')  # Redireciona para a lista de empréstimos
+            return redirect('loan_history')  # Redireciona para a lista de empréstimos
         except Loan.DoesNotExist:
             messages.error(request, "Empréstimo não encontrado.")
             return redirect('return_loan')
@@ -79,3 +81,9 @@ def return_loan(request):
         'active_loans': active_loans,
         'return_date_today': return_date_today
     })
+
+@login_required
+def loan_history(request):
+    # Filtra os empréstimos do usuário logado
+    loans = Loan.objects.filter(user=request.user).order_by('-loan_date')
+    return render(request, 'list_loans.html', {'loans': loans})

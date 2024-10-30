@@ -15,12 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import path
 
 from books.views import add_book_view, home_view, list_books
-from loans.views import register_loan, return_loan
+from loans.views import loan_history, register_loan, return_loan
 from reports.views import generate_report
-from users.views import list_users, register_user
+from users.views import admin_dashboard, list_users, reader_dashboard, register_user, user_login, user_logout
 
 urlpatterns = [
     path('', home_view, name='home'),  # URL para página inicial
@@ -32,8 +32,11 @@ urlpatterns = [
     path('registrar-empréstimo/', register_loan, name='register_loan'),  # URL para registrar empréstimo
     path('devolver-empréstimo/', return_loan, name='return_loan'),  # URL para registrar devolução
     path('relatorio-empréstimos/', generate_report, name='generate_report'),  # URL para gerar relatório
+    path('login/', user_login, name='login'), # URL para login
+    path('logout/', user_logout, name='logout'), # URL para logout
+    path('administrador/', admin_dashboard, name='admin_dashboard'), # URL para area do admin
+    path('leitor/', reader_dashboard, name='reader_dashboard'), # URL para area do leitor
+    path('historico-emprestimos/', loan_history, name='loan_history'), # URL para listar empréstimos
 
 
-
-    # Adicione outras URLs conforme necessário
 ]

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Leitor{% endblock %}
+
+{% block content %}
+<h2>Bem-vindo ao Dashboard do Leitor</h2>
+<header>
+    <h1>Bem-vindo ao Genius Lab!</h1>
+    <h2>Dashboard do Leitor</h2>
+</header>
+<main>
+    <p>Selecione uma das opções abaixo:</p>
+    <ul>
+        <li><a href="{% url 'list_books' %}">Listar Livros</a></li>
+        <li><a href="{% url 'register_loan' %}">Registrar Empréstimo</a></li>
+        <li><a href="{% url 'loan_history' %}">Meus Empréstimos</a></li>
+        <li><a href="{% url 'logout' %}">Sair</a></li>   
+
+    </ul>
+</main>
+{% endblock %}

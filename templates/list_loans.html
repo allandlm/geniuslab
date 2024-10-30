@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Histórico de Empréstimos{% endblock %}
+
+{% block content %}
+<h2>Histórico de Empréstimos</h2>
+
+{% if loans %}
+    <table>
+        <tr>
+            <th>Livro</th>
+            <th>Data do Empréstimo</th>
+            <th>Data de Devolução</th>
+            <th>Status</th>
+        </tr>
+        {% for loan in loans %}
+            <tr>
+                <td>{{ loan.book.title }}</td>
+                <td>{{ loan.loan_date }}</td>
+                <td>{{ loan.return_date|default:"Em aberto" }}</td>
+                <td>{{ loan.status }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>Você ainda não realizou nenhum empréstimo.</p>
+{% endif %}
+{% endblock %}
