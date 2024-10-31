@@ -23,20 +23,33 @@ from reports.views import generate_report
 from users.views import admin_dashboard, list_users, reader_dashboard, register_user, user_login, user_logout
 
 urlpatterns = [
-    path('', home_view, name='home'),  # URL para página inicial
+    # ===== Controle dev =====
+    path('home/', home_view, name='home'),  # URL para página inicial
     path('admin/', admin.site.urls), # URL entrar como superuser
-    path('livros/', list_books, name='list_books'),  # URL para listar livros
-    path('livros/adicionar/', add_book_view, name='add_book'),  # URL para adicionar livro
-    path('usuarios/', list_users, name='list_users'),  # URL para listar usuários
-    path('registrar/', register_user, name='register_user'),  # URL para registrar usuário
-    path('registrar-empréstimo/', register_loan, name='register_loan'),  # URL para registrar empréstimo
-    path('devolver-empréstimo/', return_loan, name='return_loan'),  # URL para registrar devolução
-    path('relatorio-empréstimos/', generate_report, name='generate_report'),  # URL para gerar relatório
-    path('login/', user_login, name='login'), # URL para login
+    
+    # ===== Login e Logout =====
+    path('', user_login, name='login'), # URL para login
     path('logout/', user_logout, name='logout'), # URL para logout
+    
+    # ===== Areas de admin e leitor =====
     path('administrador/', admin_dashboard, name='admin_dashboard'), # URL para area do admin
     path('leitor/', reader_dashboard, name='reader_dashboard'), # URL para area do leitor
+    
+    # ===== Livros =====
+    path('livros/', list_books, name='list_books'),  # URL para listar livros
+    path('livros/adicionar/', add_book_view, name='add_book'),  # URL para adicionar livro
+   
+    # ===== Usuários =====
+    path('usuarios/', list_users, name='list_users'),  # URL para listar usuários
+    path('registrar/', register_user, name='register_user'),  # URL para registrar usuário
+   
+    # ===== Empréstimos =====
+    path('registrar-empréstimo/', register_loan, name='register_loan'),  # URL para registrar empréstimo
+    path('devolver-empréstimo/', return_loan, name='return_loan'),  # URL para registrar devolução
     path('historico-emprestimos/', loan_history, name='loan_history'), # URL para listar empréstimos
+    
+    # ===== Relatórios =====
+    path('relatorio-empréstimos/', generate_report, name='generate_report'),  # URL para gerar relatório
 
 
 ]

@@ -12,20 +12,19 @@
     <!-- Cabeçalho -->
     <header>
         <h1>Sistema de Biblioteca Genius Lab</h1>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Inicio</a></li>
-            </ul>
-        </nav>
     </header>
-
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+        </ul>
+    </nav>
     <!-- Conteúdo principal -->
     <main>
         {% block content %}
         <!-- Conteúdo específico da página será injetado aqui -->
         {% endblock %}
     </main>
-
+    <br>
     <!-- Rodapé -->
     <footer>
         <p>&copy; 2024 Sistema de Biblioteca Genius Lab. Todos os direitos reservados.</p>
