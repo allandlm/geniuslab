@@ -61,20 +61,25 @@ textarea {
     border-radius: 5px;
 }
 
-button , .button-link {
-    background: #1cbce2; /* Azul forte para botões */
+/* Estilos gerais para todos os botões */
+button, .button-link {
+    background-color: #1cbce2; /* Azul forte para botões */
     color: #023d4b;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.2s ease; /* Efeito de transformação suave */
+    text-align: center;
+    text-decoration: none; /* Remove sublinhado de links */
 }
 
+/* Efeito hover para botões gerais */
 button:hover, .button-link:hover {
-    background: #0eace5; /* Azul mais claro ao passar o mouse */
+    background-color: #0eace5; /* Azul mais claro ao passar o mouse */
     transform: scale(1.05); /* Leve aumento ao passar o mouse */
 }
+
 
 ul {
     display: flex; /* Ativa o Flexbox */
@@ -84,6 +89,42 @@ ul {
     margin: 0 auto; /* Centraliza a lista horizontalmente */
     padding: 0; /* Remove o padding padrão */
     list-style: none; /* Remove os marcadores da lista */
+}/* Botão de Editar com estilo específico */
+button.button-edit, a.button-link.button-edit {
+    background-color: #69c4de;
+    border: 1px solid #1cbce2;
+    color: #023d4b;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover específico para o botão de Editar */
+button.button-edit:hover, a.button-link.button-edit:hover {
+    background-color: #e2df1c; /* Amarelo ao passar o mouse */
+    color: #ffffff; /* Texto branco para contraste */
+    transform: scale(1.05);
+}
+
+/* Botão de Deletar com estilo específico */
+button.button-delete, a.button-link.button-delete {
+    background-color: #bcb8be;
+    border: 1px solid #9ca7aa;
+    color: #023d4b;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover específico para o botão de Deletar */
+button.button-delete:hover, a.button-link.button-delete:hover {
+    background-color: #e02525; /* Tom mais escuro ao passar o mouse */
+    color: #ffffff; /* Texto branco para contraste */
+    transform: scale(1.05);
 }
 
 li {
@@ -151,4 +192,83 @@ th {
         padding: 15px;
         margin: 10px;
     }
+}
+
+/* Estilo base para o contêiner de mensagens */
+.messages {
+    position: fixed;
+    top: 20px;  /* Distância do topo da página */
+    right: 20px;  /* Distância da borda direita */
+    z-index: 9999;  /* Garante que as mensagens fiquem acima de outros elementos */
+    width: auto;
+    max-width: 350px;
+    padding: 10px;
+    margin: 0;
+}
+
+/* Estilo base para todas as mensagens */
+.messages .alert {
+    margin-bottom: 10px;  /* Espaçamento entre as mensagens */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Sombra sutil para destacar */
+    font-size: 16px;
+    transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Para mensagens de sucesso */
+.alert-success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Para mensagens de erro */
+.alert-error {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Para mensagens de informação */
+.alert-info {
+    background-color: #2196F3;
+    color: white;
+}
+
+/* Para mensagens de aviso */
+.alert-warning {
+    background-color: #ff9800;
+    color: white;
+}
+
+/* Efeito de transição quando aparece */
+.alert {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* Quando as mensagens são visíveis */
+.messages .alert.show-alert {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Alerta com ícones */
+.alert-success::before {
+    content: "✔"; /* Ícone de sucesso */
+    margin-right: 10px;
+}
+
+.alert-error::before {
+    content: "❌"; /* Ícone de erro */
+    margin-right: 10px;
+}
+
+.alert-info::before {
+    content: "ℹ️"; /* Ícone de informação */
+    margin-right: 10px;
+}
+
+.alert-warning::before {
+    content: "⚠️"; /* Ícone de aviso */
+    margin-right: 10px;
 }

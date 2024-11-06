@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from books.views import add_book_view, home_view, list_books
+from books.views import add_book_view, delete_book, edit_book, home_view, list_books
 from loans.views import loan_history, register_loan, return_loan
 from reports.views import generate_report
 from users.views import admin_dashboard, list_users, reader_dashboard, register_user, user_login, user_logout
@@ -38,6 +38,8 @@ urlpatterns = [
     # ===== Livros =====
     path('livros/', list_books, name='list_books'),  # URL para listar livros
     path('livros/adicionar/', add_book_view, name='add_book'),  # URL para adicionar livro
+    path('book/edit/<int:id>/', edit_book, name='edit_book'), # URL para editar livro
+    path('book/delete/<int:id>/', delete_book, name='delete_book'),
    
     # ===== Usuários =====
     path('usuarios/', list_users, name='list_users'),  # URL para listar usuários
