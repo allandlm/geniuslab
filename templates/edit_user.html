@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Usuário{% endblock %}
+
+{% block content %}
+<h2>Editar Usuário</h2>
+<form method="POST">
+    {% csrf_token %}
+    
+    <label for="username">Nome de Usuário:</label>
+    <input type="text" name="username" id="username" value="{{ user.username }}" required>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" value="{{ user.email }}" required>
+
+    <label for="user_type">Tipo de Usuário:</label>
+    <select name="user_type" id="user_type" required>
+        <option value="admin" {% if user.user_type == 'admin' %}selected{% endif %}>Administrador</option>
+        <option value="reader" {% if user.user_type == 'reader' %}selected{% endif %}>Leitor</option>
+    </select>
+
+    <label for="address">Endereço:</label>
+    <textarea name="address" id="address">{{ user.address }}</textarea>
+
+    <label for="phone">Telefone:</label>
+    <input type="tel" name="phone" id="phone" pattern="[0-9]{10,11} value="{{ user.phone }}">
+
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+</form>
+
+<a href="{% url 'list_users' %}" class="btn btn-secondary">Cancelar</a>
+{% endblock %}

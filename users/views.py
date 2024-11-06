@@ -1,5 +1,5 @@
 from urllib import request
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate, login, logout
@@ -83,3 +83,43 @@ def register_user(request):
 def list_users(request):
     users = User.objects.all()  # Obtém todos os usuários
     return render(request, 'list_users.html', {'users': users})
+
+def edit_user(request, id):
+    # Buscar o usuário a ser editado
+    user = get_object_or_404(User, id=id)
+
+    if request.method == 'POST':
+        # Obter os dados do formulário manualmente
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        user_type = request.POST.get('user_type')
+        address = request.POST.get('address')
+        phone = request.POST.get('phone')
+
+        # Validar os dados
+        if not username or not email:
+            messages.error(request, "Nome de usuário e email são obrigatórios.")
+            return redirect('edit_user', id=id)
+
+        # Se os dados forem válidos, atualize o usuário
+        user.username = username
+        user.email = email
+        user.user_type = user_type
+        user.address = address
+        user.phone = phone
+        
+        # Salvar as alterações no banco de dados
+        user.save()
+
+        # Exibir mensagem de sucesso
+        messages.success(request, "Usuário atualizado com sucesso!")
+        return redirect('list_users')  # Redireciona para a lista de usuários
+
+    return render(request, 'edit_user.html', {'user': user})
+
+def delete_user(request, id):
+
+    user = get_object_or_404(User, id=id)
+    user.delete()
+    messages.success(request, "Usuário deletado com sucesso.")
+    return redirect('list_users')  # Redireciona para a lista de usuários

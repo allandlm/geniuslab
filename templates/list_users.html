@@ -13,6 +13,7 @@
             <th>Tipo de Usuário</th>
             <th>Endereço</th>
             <th>Telefone</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -22,8 +23,12 @@
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.get_user_type_display }}</td>
-            <td>{{ user.adress }}</td>
+            <td>{{ user.address }}</td>
             <td>{{ user.phone }}</td>
+            <td> <a href="{% url 'edit_user' user.id %}" class="button-link">Editar</a> |&nbsp|
+                <a href="{% url 'delete_user' user.id %}" class="button-link" onclick="return confirm('Tem certeza que deseja excluir este usuário?');">Excluir</a>
+                
+            </td>
         </tr>
         {% empty %}
         <tr>

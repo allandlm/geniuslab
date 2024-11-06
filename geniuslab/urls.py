@@ -20,7 +20,7 @@ from django.urls import path
 from books.views import add_book_view, delete_book, edit_book, home_view, list_books
 from loans.views import loan_history, register_loan, return_loan
 from reports.views import generate_report
-from users.views import admin_dashboard, list_users, reader_dashboard, register_user, user_login, user_logout
+from users.views import admin_dashboard, delete_user, edit_user, list_users, reader_dashboard, register_user, user_login, user_logout
 
 urlpatterns = [
     # ===== Controle dev =====
@@ -38,12 +38,14 @@ urlpatterns = [
     # ===== Livros =====
     path('livros/', list_books, name='list_books'),  # URL para listar livros
     path('livros/adicionar/', add_book_view, name='add_book'),  # URL para adicionar livro
-    path('book/edit/<int:id>/', edit_book, name='edit_book'), # URL para editar livro
-    path('book/delete/<int:id>/', delete_book, name='delete_book'),
+    path('livros/editar/<int:id>/', edit_book, name='edit_book'), # URL para editar livro
+    path('livros/deletar/<int:id>/', delete_book, name='delete_book'),
    
     # ===== Usuários =====
     path('usuarios/', list_users, name='list_users'),  # URL para listar usuários
     path('registrar/', register_user, name='register_user'),  # URL para registrar usuário
+    path('usuarios/editar/<int:id>/', edit_user, name='edit_user'), # URL para editar usuário
+    path('usuarios/deletar/<int:id>/', delete_user, name='delete_user'), # URL para deletar usuário
    
     # ===== Empréstimos =====
     path('registrar-empréstimo/', register_loan, name='register_loan'),  # URL para registrar empréstimo
